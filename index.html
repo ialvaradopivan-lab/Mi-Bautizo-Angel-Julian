@@ -4,62 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bautizo Ángel Julián</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{
-    font-family:'Roboto',sans-serif;
-    background: linear-gradient(rgba(255,250,240,0.95), rgba(255,245,230,0.95)), url('https://images.unsplash.com/photo-1604948176917-97dbd82c8f47?auto=format&fit=crop&w=1650&q=80') center/cover no-repeat;
-    color:#4b3a2e;
-    scroll-behavior:smooth;
-  }
+  * {margin:0; padding:0; box-sizing:border-box;}
+  body { font-family:'Inter',sans-serif; background:#fefefe; color:#333; scroll-behavior:smooth; overflow-x:hidden; }
 
-  nav{
-    position:fixed;top:0;width:100%;display:flex;justify-content:center;gap:20px;padding:10px 0;
-    background: rgba(250,245,240,0.95); box-shadow:0 2px 5px rgba(0,0,0,0.1); z-index:1000;
-  }
-  nav a{text-decoration:none;color:#7a5a45;font-weight:bold;transition:color 0.3s;}
-  nav a:hover{color:#5f3e2f;}
+  nav { position:fixed; top:0; width:100%; display:flex; justify-content:center; gap:20px; padding:15px 0; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.05); z-index:1000; }
+  nav a { text-decoration:none; color:#555; font-weight:600; transition:color 0.3s; }
+  nav a:hover { color:#000; }
 
-  section{
-    min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; text-align:center;
-    opacity:0; transform: rotateX(90deg) translateY(50px); transform-origin: top; transition: all 1s ease;
-  }
-  section.visible{opacity:1; transform: rotateX(0deg) translateY(0);}
-  h1{font-family:'Great Vibes', cursive;font-size:3em;margin-bottom:10px;color:#7a5a45; animation: glow 2s ease-in-out infinite alternate;}
-  h2{font-size:2em;margin:5px 0 20px 0;color:#8b6a50;}
-  p{font-size:1.1em;margin:5px 0;line-height:1.6;}
-  @keyframes glow{0%{text-shadow:0 0 5px #fff;}100%{text-shadow:0 0 15px #fdd;}}
+  section { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; text-align:center; opacity:0; transform: translateY(40px); transition: all 0.8s ease; }
+  section.visible { opacity:1; transform: translateY(0); }
 
-  .card{
-    background: rgba(255,245,230,0.95); padding:25px; border-radius:20px; margin:15px 0; max-width:600px;
-    box-shadow:0 6px 12px rgba(0,0,0,0.15); overflow:hidden; position:relative;
-    transform-origin: top center;
-    transition: transform 1s ease, opacity 1s ease;
-  }
+  h1 { font-size:3rem; margin-bottom:10px; color:#111; }
+  h2 { font-size:2rem; margin-bottom:15px; color:#444; }
+  p { font-size:1.1rem; line-height:1.6; margin-bottom:10px; }
 
-  .carousel{display:flex; overflow:hidden; width:100%; max-width:500px; margin:15px auto; border-radius:15px; box-shadow:0 4px 8px rgba(0,0,0,0.1);}
-  .carousel img{min-width:100%; transition: transform 0.5s ease;}
+  .card { background:#fff; padding:25px; border-radius:15px; box-shadow:0 4px 12px rgba(0,0,0,0.08); max-width:500px; margin:15px 0; }
 
-  .button{display:inline-block;padding:12px 25px;background-color:#7a5a45;color:white;text-decoration:none;border-radius:10px;font-weight:bold;margin-top:15px;transition: all 0.3s; box-shadow:0 4px 8px rgba(0,0,0,0.2);}
-  .button:hover{background-color:#5f3e2f; transform:translateY(-2px); box-shadow:0 6px 12px rgba(0,0,0,0.3);}
+  .button { display:inline-block; padding:12px 25px; background:#111; color:#fff; text-decoration:none; border-radius:8px; font-weight:600; margin-top:15px; transition:background 0.3s, transform 0.2s; }
+  .button:hover { background:#333; transform:translateY(-2px); }
 
-  .countdown{font-size:2em;font-weight:bold;margin:20px 0;color:#d9534f;}
-  .audio-control{position:fixed;top:20px;right:20px;background:#7a5a45;color:#fff;border:none;padding:10px 15px;border-radius:50px;cursor:pointer;font-weight:bold;z-index:1000;}
-  .qr-container{margin-top:15px;}
+  .countdown { font-size:2rem; font-weight:600; margin:20px 0; color:#e63946; }
+
+  .carousel { display:flex; overflow:hidden; width:100%; max-width:400px; margin:15px auto; border-radius:10px; }
+  .carousel img { min-width:100%; transition:transform 0.5s ease; border-radius:10px; }
+
+  .audio-control { position:fixed; top:20px; right:20px; background:#111; color:#fff; border:none; padding:10px 15px; border-radius:50px; cursor:pointer; font-weight:600; z-index:1000; }
+
+  .qr-container { margin-top:15px; }
+
+  canvas#confetti { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:999; }
 
   @media(max-width:600px){
-    h1{font-size:2.2em;}
-    h2{font-size:1.5em;}
-    .card{padding:15px;}
-    .countdown{font-size:1.5em;}
-    .carousel img{border-radius:10px;}
+    h1{ font-size:2.2rem; }
+    h2{ font-size:1.5rem; }
+    .card{ padding:20px; }
+    .countdown{ font-size:1.5rem; }
+    .carousel { max-width:300px; }
   }
 </style>
 </head>
 <body>
 
+<canvas id="confetti"></canvas>
 <button class="audio-control" id="audioBtn">🎵 Pausar</button>
 <audio id="bgMusic" autoplay loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
@@ -73,11 +62,11 @@
 </nav>
 
 <section id="home">
-  <h1>Mi Bautizo</h1>
-  <h2>Ángel Julián</h2>
+  <h1>Ángel Julián</h1>
+  <h2>Mi Bautizo</h2>
   <p>Sábado, 8 de noviembre 2025</p>
   <div class="countdown" id="countdown"></div>
-  <a href="https://wa.me/?text=Hola%20Gina%20y%20Ignacio!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Ángel%20Julián" class="button" target="_blank">Confirmar Asistencia por WhatsApp</a>
+  <a href="https://wa.me/?text=Hola%20Gina%20y%20Ignacio!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Ángel%20Julián" class="button" target="_blank">Confirmar por WhatsApp</a>
   <div class="qr-container"><canvas id="qr"></canvas></div>
 </section>
 
@@ -123,10 +112,18 @@
   // Contador regresivo
   const countdownElement = document.getElementById('countdown');
   const eventDate = new Date('November 8, 2025 11:30:00').getTime();
+
+  let confettiTriggered = false;
+
   function updateCountdown(){
     const now = new Date().getTime();
     const distance = eventDate - now;
-    if(distance<=0){ countdownElement.innerHTML="¡Es hora del bautizo!"; clearInterval(countdownInterval); return; }
+    if(distance<=0){ 
+      countdownElement.innerHTML="¡Es hora del bautizo!";
+      clearInterval(countdownInterval); 
+      if(!confettiTriggered){ startConfetti(); confettiTriggered=true; }
+      return; 
+    }
     const days=Math.floor(distance/(1000*60*60*24));
     const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
     const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
@@ -141,7 +138,7 @@
   const audioBtn=document.getElementById('audioBtn');
   audioBtn.addEventListener('click',()=>{ if(bgMusic.paused){bgMusic.play(); audioBtn.textContent='🎵 Pausar';} else{bgMusic.pause(); audioBtn.textContent='🎵 Reproducir';} });
 
-  // Animación secciones tipo sobre
+  // Animación secciones
   const sections=document.querySelectorAll('section');
   const observer=new IntersectionObserver(entries=>{ entries.forEach(entry=>{ if(entry.isIntersecting){entry.target.classList.add('visible');} }); }, {threshold:0.3});
   sections.forEach(section=>observer.observe(section));
@@ -151,7 +148,45 @@
   initCarousel('carouselCeremonia'); initCarousel('carouselRecepcion'); initCarousel('carouselFamilia');
 
   // QR dinámico
-  var qr = new QRious({ element: document.getElementById('qr'), size: 150, value: 'https://wa.me/?text=Hola%20Gina%20y%20Ignacio!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Ángel%20Julián' });
+  new QRious({ element: document.getElementById('qr'), size:150, value: 'https://wa.me/?text=Hola%20Gina%20y%20Ignacio!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Ángel%20Julián' });
+
+  // Confetti minimalista
+  function startConfetti() {
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const confetti = [];
+    const colors = ['#e63946','#f1faee','#a8dadc','#457b9d','#f4a261'];
+    for(let i=0;i<150;i++){
+      confetti.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height - canvas.height,
+        r: Math.random()*6+2,
+        d: Math.random()*150+50,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        tilt: Math.random()*10-10,
+        tiltAngleIncrement: Math.random()*0.07+0.05
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      confetti.forEach((c)=>{
+        ctx.beginPath();
+        ctx.lineWidth=c.r/2;
+        ctx.strokeStyle=c.color;
+        ctx.moveTo(c.x+c.tilt+c.r/2,c.y);
+        ctx.lineTo(c.x+c.tilt,c.y+c.tilt+c.r/2);
+        ctx.stroke();
+        c.tiltAngle+=c.tiltAngleIncrement;
+        c.y += (Math.cos(c.d) + 3 + c.r/2)/2;
+        c.x += Math.sin(c.tiltAngle);
+        if(c.y>canvas.height) { c.y=-10; c.x=Math.random()*canvas.width; }
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  }
 </script>
 
 </body>
