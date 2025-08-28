@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bautizo Ángel Julián</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #f6eee4;
+      color: #4b3a2e;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #7a5a45;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin: 5px 0 20px 0;
+      color: #8b6a50;
+    }
+
+    p {
+      font-size: 1.1em;
+      margin: 5px 0;
+    }
+
+    .section {
+      background: #fef6f0;
+      border: 2px solid #d3bfa0;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .section-title {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #7a5a45;
+    }
+
+    .button {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 12px 25px;
+      background-color: #7a5a45;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #5f3e2f;
+    }
+
+    .countdown {
+      font-size: 1.5em;
+      margin: 20px 0;
+      font-weight: bold;
+      color: #8b6a50;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #6b5a4c;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2em; }
+      h2 { font-size: 1.5em; }
+      .section { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Mi Bautizo</h1>
+    <h2>Ángel Julián</h2>
+    <p>Sábado, 8 de noviembre 2025</p>
+
+    <div class="countdown" id="countdown">
+      Contando los días...
+    </div>
+
+    <div class="section">
+      <div class="section-title">Ceremonia</div>
+      <p>Parroquia de la Asunción de María</p>
+      <p>Dirección: 16 de septiembre y fundación, barrio del Zapote</p>
+      <p>Hora: 11:30 a.m</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Recepción</div>
+      <p>Calle Canario s/n (Hasta el fondo)</p>
+      <p>Colonia Valle de la Primavera (Nueva Santa María)</p>
+      <p>Hora: 2:00 p.m</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Mi Familia</div>
+      <p>Mis papás: Gina Elizabeth Gallegos Mendoza & Ignacio Miguel Duarte Patiño</p>
+      <p>Mis padrinos: María Carolina Patiño Rodríguez & Fernando Felice Martinez Orlanzzini</p>
+    </div>
+
+    <a href="https://wa.me/?text=Hola%20Gina%20y%20Ignacio!%20Confirmo%20mi%20asistencia%20al%20bautizo%20de%20Ángel%20Julián" 
+       class="button" target="_blank">
+       Confirmar asistencia por WhatsApp
+    </a>
+
+    <div class="footer">
+      ¡Esperamos contar con tu presencia en este día tan especial!
+    </div>
+  </div>
+
+  <script>
+    // Contador regresivo
+    const countdownElement = document.getElementById('countdown');
+    const eventDate = new Date('November 8, 2025 11:30:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance <= 0) {
+        countdownElement.innerHTML = "¡El bautizo ha comenzado!";
+        clearInterval(countdownInterval);
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+      countdownElement.innerHTML = `Faltan ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
